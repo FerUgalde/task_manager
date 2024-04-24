@@ -6,7 +6,7 @@ def output_formatter(results):
     for result in results:
         res = {
             "id": result[0],
-            "title": result[1],
+            "name": result[1],
             "summary": result[2],
             "description": result[3],
             "is_done": result[4]
@@ -30,7 +30,7 @@ def select_by_id(task_id):
         return output_formatter(results)[0]
     return {}
 
-def instert(task_data):
+def insert(task_data):
     task_tuple = (
         task_data.get("name"),
         task_data.get("summary"),

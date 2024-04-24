@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit {{ task["name"] }} {% endblock title %}
+
+{% block content %}
+<h1>Edit {{ task["name"] }}</h1>
+<form action="/tasks/{{ task['id'] }}" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="mb-3">
+        <label class="form-label" for="name">Name:</label><br>
+        <input class="form-control" type="text" id="name" name="name" value="{{ task['name'] }}"><br><br>
+        <label class="form-label" for="summary">Summary:</label><br>
+        <input class="form-control" type="text" id="summary" name="summary" value="{{ task['summary'] }}"><br><br>
+        <label class="form-label" for="description">Description:</label><br>
+        <textarea class="form-control" id="description" name="description">{{ task['description'] }}</textarea><br><br>
+        <input class="btn btn-primary" type="submit" value="Save">
+    </div>
+</form>
+{% endblock content %}

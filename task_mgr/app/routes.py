@@ -17,10 +17,10 @@ def get_all_task():
     return out
 
 @app.get("/tasks/<int:pk>")
-def get_sibgle_task(pk):
+def get_single_task(pk):
     single_task = task.select_by_id(pk)
     out = {
-        "tasks": single_task,
+        "task": single_task,
         "ok": True
     }
     return out

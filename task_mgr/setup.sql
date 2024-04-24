@@ -2,8 +2,8 @@
 
 CREATE TABLE IF NOT EXISTS task (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(45),
-    summary VARCHAR(45),
+    name VARCHAR(64),
+    summary VARCHAR(128),
     description TEXT,
     is_done BOOLEAN DEFAULT 0
 );
