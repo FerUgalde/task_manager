@@ -4,8 +4,7 @@
 
 {% block content %}
 <h1>Edit {{ task["name"] }}</h1>
-<form action="/tasks/{{ task['id'] }}" method="POST">
-    <input type="hidden" name="_method" value="PUT">
+<form action="{{ url_for('update', pk=task['id']) }}" method="POST">
     <div class="mb-3">
         <label class="form-label" for="name">Name:</label><br>
         <input class="form-control" type="text" id="name" name="name" value="{{ task['name'] }}"><br><br>
@@ -13,6 +12,8 @@
         <input class="form-control" type="text" id="summary" name="summary" value="{{ task['summary'] }}"><br><br>
         <label class="form-label" for="description">Description:</label><br>
         <textarea class="form-control" id="description" name="description">{{ task['description'] }}</textarea><br><br>
+        <label class="form-label" for="status">Status:</label><br>
+        <input type="hidden" name="is_done" id="is_done" value="{{ task['is_done'] }}">
         <input class="btn btn-primary" type="submit" value="Save">
     </div>
 </form>

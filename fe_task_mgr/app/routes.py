@@ -48,13 +48,9 @@ def detail(pk):
 def new_task():
     return render_template("new.html")
 
-@app.post("/tasks")
+@app.post("/new_task")
 def create():
-    data = {
-        "name": request.form.get("name"),
-        "summary": request.form.get("summary"),
-        "description": request.form.get("description")
-    }
+    data = request.form
     response = requests.post(BACKEND_URL, json=data)
     if response.status_code == 204:
         return redirect(url_for("task_list"))
@@ -97,16 +93,18 @@ def delete_task(pk):
     response = requests.get(url)
     if response.status_code == 200:
         task = response.json().get("task")
+        print(task)
         return render_template("delete.html", task=task)
     return (
         render_template("error.html", err=response.status_code),
         response.status_code
     )
 
-@app.delete("/tasks/<int:pk>")
+@app.post("/tasks/<int:pk>/delete")
 def delete(pk):
     url = '%s/%s' % (BACKEND_URL, pk)
     response = requests.delete(url)
+    print(pk)
     if response.status_code == 204:
         return redirect(url_for("task_list"))
     return (
